@@ -10,6 +10,13 @@ if [ -f "$settings" ] && command -v jq >/dev/null 2>&1; then
   tmp="$(jq '.model = "claude-opus-5-5"' "$settings")" && printf '%s\n' "$tmp" > "$settings"
 fi
 
+# Claude Code mods (fleet pane, usage charts, attention band), loaded in every
+# session from ~/.claude/mods. Same reason: the template drops the env key.
+if [ -f "$settings" ] && command -v jq >/dev/null 2>&1; then
+  dirs="$HOME/.claude/mods/fleet-pane:$HOME/.claude/mods/usage-pane:$HOME/.claude/mods/attention-band"
+  tmp="$(jq --arg d "$dirs" '.env.CLAUDE_CODE_PLUGIN_DIRS = $d' "$settings")" && printf '%s\n' "$tmp" > "$settings"
+fi
+
 # LINEAR_API_KEY in every new interactive shell, minted from your Coder Linear
 # login each time (coder-mcp-token also works inside the Claude session).
 mkdir -p "$HOME/.bashrc.d"
