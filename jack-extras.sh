@@ -3,7 +3,7 @@
 # boxes that have ~/.config/jack-extras/enabled. Each step is independent.
 [ -f "$HOME/.config/jack-extras/enabled" ] || exit 0
 
-# Fable 5 as Claude Code's default model. The template rewrites this file on
+# Opus 5.5 as Claude Code's default model. The template rewrites this file on
 # every start just before this runs, so set the key again each time.
 settings="$HOME/.claude/settings.json"
 if [ -f "$settings" ] && command -v jq >/dev/null 2>&1; then
