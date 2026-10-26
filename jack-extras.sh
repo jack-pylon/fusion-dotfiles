@@ -7,7 +7,7 @@
 # every start just before this runs, so set the key again each time.
 settings="$HOME/.claude/settings.json"
 if [ -f "$settings" ] && command -v jq >/dev/null 2>&1; then
-  tmp="$(jq '.model = "claude-fable-5"' "$settings")" && printf '%s\n' "$tmp" > "$settings"
+  tmp="$(jq '.model = "claude-opus-5-5"' "$settings")" && printf '%s\n' "$tmp" > "$settings"
 fi
 
 # LINEAR_API_KEY in every new interactive shell, minted from your Coder Linear
