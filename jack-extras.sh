@@ -10,10 +10,11 @@ if [ -f "$settings" ] && command -v jq >/dev/null 2>&1; then
   tmp="$(jq '.model = "claude-opus-5-5"' "$settings")" && printf '%s\n' "$tmp" > "$settings"
 fi
 
-# Claude Code mods (fleet pane, usage charts, attention band), loaded in every
+# Claude Code mods (fleet pane, usage charts, attention band, Linear band,
+# Switchboard pane), loaded in every
 # session from ~/.claude/mods. Same reason: the template drops the env key.
 if [ -f "$settings" ] && command -v jq >/dev/null 2>&1; then
-  dirs="$HOME/.claude/mods/fleet-pane:$HOME/.claude/mods/usage-pane:$HOME/.claude/mods/attention-band"
+  dirs="$HOME/.claude/mods/fleet-pane:$HOME/.claude/mods/usage-pane:$HOME/.claude/mods/attention-band:$HOME/.claude/mods/linear-band:$HOME/.claude/mods/switchboard-pane"
   tmp="$(jq --arg d "$dirs" '.env.CLAUDE_CODE_PLUGIN_DIRS = $d' "$settings")" && printf '%s\n' "$tmp" > "$settings"
 fi
 
